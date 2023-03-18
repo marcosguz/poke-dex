@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PokemonDetail } from '../../models/pokemon.detail';
 
 @Component({
@@ -11,7 +12,7 @@ export class PokemonDetailComponent implements OnInit {
   pokemon: PokemonDetail;
   classicMode: boolean;
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.pokemon = data.pokemon;
     this.classicMode = data.classicMode;
   }

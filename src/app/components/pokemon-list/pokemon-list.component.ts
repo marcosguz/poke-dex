@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { forkJoin, Observable } from 'rxjs';
 import { PokemonDetail } from '../../models/pokemon.detail';
@@ -27,6 +28,7 @@ export class PokemonListComponent implements OnInit {
   constructor(
     private pokemonService: PokemonService,
     private bottomSheet: MatBottomSheet,
+    private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {
     this.offset = 0;
@@ -101,7 +103,7 @@ export class PokemonListComponent implements OnInit {
   }
 
   onDetail(pokemon: PokemonDetail): void {
-    this.bottomSheet.open(PokemonDetailComponent, {
+    this.dialog.open(PokemonDetailComponent, {
       data: { pokemon, classicMode: this.classicMode },
     });
   }
