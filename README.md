@@ -3,18 +3,24 @@
 
 
 ```javascript
-export function PasswordGeneratorCard() {
-    const [password, setPassword] = useState("Amazing Password");
-
-    return (
-        <div className={s.root}>
-            <div className={s.main}>
-                <PasswordGeneratorHeader />
-                <PasswordGeneratorBody onSubmit={setPassword} />
-            </div>
-            <PasswordGeneratorFooter password={password} />
-        </div>
-    );
+export class PokemonDetailComponent implements OnInit {
+    pokemon: PokemonDetail;
+    classicMode: boolean;
+  
+    constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+      this.pokemon = data.pokemon;
+      this.classicMode = data.classicMode;
+    }
+  
+    ngOnInit(): void {}
+  
+    getAbilities(): string {
+      return this.pokemon.abilities.map((x) => x.ability?.name).join(', ');
+    }
+  
+    getPrincipalType(list: any[]) {
+      return list.filter((x) => x.slot === 1)[0]?.type.name;
+    }
 }
 ```
 ## About the project
@@ -27,8 +33,7 @@ export function PasswordGeneratorCard() {
             </td>
         </tr>
         <tr>
-            <td align="justify">This web application is a tool developed to facilitate the creation of passwords. It is quite simple to use: just
-You must choose the characters you want your password to have, and you can also copy it to your clipboard, for greater convenience.</td>
+            <td align="justify">This web application was developed for educational purposes for the consumption of APIs. It is quite easy to use: you just have to click on the pokemon you like and its information will be displayed. You can also search for a particular pokemon, for greater convenience.</td>
         </tr>
         <tr>
             <td align="justify">
@@ -68,4 +73,5 @@ Marcos Guzmán
 
 ## Recognitions
 - [Angular CLI](https://github.com/google/angular_cli)
+- [Poke_API](https://pokeapi.co/)
 - [Marked](https://marked.js.org/)
